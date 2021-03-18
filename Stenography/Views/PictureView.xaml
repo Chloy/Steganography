@@ -1,0 +1,127 @@
+﻿<UserControl x:Class="Stenography.Views.PictueView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:properties="clr-namespace:Stenography.Properties"
+             xmlns:local="clr-namespace:Stenography.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid>
+        <Label Content="Picture Mode" FontFamily="Bahnschrift Light" FontSize="27" Foreground="White" Margin="30, 0, 0, 0"/>
+        <TextBox x:Name="PathContainer"   
+                 Margin="30,50,0,0" Text="" Width="490" IsReadOnly="true"/>
+        <Button x:Name="ChooseFileContainer"   Content="..." Width="30"
+                Margin="536,50,0,0" Click="ChooseFileContainer_Click" />
+        <TextBox x:Name="PathFileForHide"  
+                 Margin="30,80,0,0" Text="" Width="490" IsReadOnly="true"/>
+        <Button x:Name="ChooseFileForHide"   Content="..." Width="30" 
+                Margin="536,80,0,0" Click="ChooseFileForHide_Click" />
+        <TextBox x:Name="PathOutput"   Margin="30,110,0,0" 
+                 Text="" Width="490" IsReadOnly="True" BorderThickness="2"/>
+        <Button x:Name="ChooseOutputPath"   Content="..." Width="30" 
+                Margin="536,110,0,0" Click="ChooseOutputPath_Click" />
+        <TextBox x:Name="NameOutput"   Margin="30,140,0,0" 
+                 Text="" Width="245" IsReadOnly="True" BorderThickness="2"/>
+        <TextBox x:Name="MaxSizeForHideIs" Text="" Margin="30,170,0,0"  
+                 Width="230" IsReadOnly="true" />
+        <Button x:Name="NeedEncrypt" Content="Encryption"   HorizontalAlignment="Left"
+                     Margin="30,200,0,0" VerticalAlignment="Top" Click="NeedEncrypt_Click"
+                BorderBrush="Gray" BorderThickness="2" Width="100" Height="25"/>
+        <PasswordBox   HorizontalAlignment="Left" Margin="30,230,0,0" 
+                     VerticalAlignment="Top" x:Name="Password" Width="490" IsEnabled="False"
+                       Template="{StaticResource passwordbox}"/>
+        <PasswordBox   HorizontalAlignment="Left" Margin="30,260,0,0" 
+            VerticalAlignment="Top" x:Name="PasswordVerify" Width="490" IsEnabled="False"
+                       Template="{StaticResource passwordbox}"/>
+        <Button x:Name="DoubleBottom" Content="Double Bottom" HorizontalAlignment="Left" 
+                VerticalAlignment="Top"   Margin="30,290,0,0" Width="130"
+                BorderBrush="Gray" BorderThickness="2" IsEnabled="False" 
+                Click="DoubleBottom_Click">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="Black"/>
+                        </Trigger>
+                        <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=ColorMode}" Value="Black">
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Background" Value="#FF120027"/>
+                        </DataTrigger>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard Storyboard.TargetProperty="Foreground.Color">
+                                        <ColorAnimation From="White"
+                                                To="Black"
+                                                Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard Storyboard.TargetProperty="Foreground.Color">
+                                        <ColorAnimation From="Black"
+                                                To="White"
+                                                Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="Click">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation 
+                                    Storyboard.TargetProperty="FontSize"
+                                    To="14" 
+                                    Duration="0:0:0.1" 
+                                    AutoReverse="True"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                        <DataTrigger Binding="{Binding ElementName=DoubleBottom, Path=IsEnabled}" Value="False">
+                            <Setter Property="Foreground" Value="Black"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=DoubleBottom, Path=IsEnabled}" Value="True">
+                            <Setter Property="Foreground" Value="White"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                    <Style.Setters>
+                        <Setter Property="FontFamily" Value="Bahnschrift Light"/>
+                        <Setter Property="FontSize" Value="15"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="Height" Value="22"/>
+                        <Setter Property="Width" Value="70"/>
+                        <Setter Property="HorizontalAlignment" Value="Left"/>
+                        <Setter Property="VerticalAlignment" Value="Top"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+
+                    </Style.Setters>
+                </Style>
+            </Button.Style>
+        </Button>
+        <PasswordBox   HorizontalAlignment="Left" Margin="30,320,0,0" 
+                     VerticalAlignment="Top" x:Name="PassDoubleBottom" Width="490" 
+                     IsEnabled="False" Template="{StaticResource passwordbox}"/>
+        <PasswordBox   HorizontalAlignment="Left" Margin="30,320,0,0" 
+            VerticalAlignment="Top" x:Name="PassDoubleBottomVerify" Width="490" 
+                     IsEnabled="False" Template="{StaticResource passwordbox}"/>
+        <TextBox x:Name="DoubleBottomPath"   IsReadOnlyCaretVisible="True" 
+                 Width="490" Margin="30,350,0,0" 
+                 IsEnabled="False"/>
+        <Button x:Name="DoubleBottomChoose" Content="..." Width="30" Margin="536,350,0,0" 
+                  Click="DoubleBottomChoose_Click" 
+                IsEnabled="False"/>
+        <Button x:Name="Hide" Content="Hide" Click="Hide_Click"   
+                Margin="30,380,0,0" Width="70" Height="30" FontSize="19"/>
+
+        <ScrollViewer x:Name="ScrollLog" VerticalScrollBarVisibility="Auto"   Margin="120, 380, 10, 10"
+                      BorderThickness="2" BorderBrush="DarkGray">
+            <TextBox x:Name="Logs" TextWrapping="Wrap" Height="Auto" Width="640" BorderThickness="0" Background="{x:Null}" Foreground="White"/>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

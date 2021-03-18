@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stenography", "Stenography\Stenography.csproj", "{8B7A5C46-E0FD-42CC-BA22-FA2AFC03FFBB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B7A5C46-E0FD-42CC-BA22-FA2AFC03FFBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B7A5C46-E0FD-42CC-BA22-FA2AFC03FFBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B7A5C46-E0FD-42CC-BA22-FA2AFC03FFBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B7A5C46-E0FD-42CC-BA22-FA2AFC03FFBB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E6C2CCE4-90CA-4898-A413-3C580B26D642}
+	EndGlobalSection
+EndGlobal
