@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace Stenography.Views {
     /// <summary>
@@ -67,8 +68,10 @@ namespace Stenography.Views {
             if (openFile.ShowDialog() == true) {
                 PathContainer.Text = openFile.FileName;
                 int index = openFile.FileName.LastIndexOf('\\');
-                PathOutput.Text = openFile.FileName.Substring(0, index);
-                NameOutput.Text = "Hide" + openFile.FileName.Substring(++index, openFile.FileName.Length - index);
+                if(string.IsNullOrEmpty(PathOutput.Text))
+                    PathOutput.Text = openFile.FileName.Substring(0, index);
+                if(string.IsNullOrEmpty(NameOutput.Text)) 
+                    NameOutput.Text = Properties.Lang.Hiden + openFile.FileName.Substring(++index, openFile.FileName.LastIndexOf('.') - openFile.FileName.LastIndexOf('\\') - 1);
                 image = new System.Drawing.Bitmap(PathContainer.Text);
                 Logs.Text += Functions.CountAbleSizeToHide(image, out numberOfBytes) + '\n';
                 if (informationForHide != null && informationForHide.Length > numberOfBytes) {
@@ -94,7 +97,25 @@ namespace Stenography.Views {
         }
 
         private void ChooseOutputPath_Click(object sender, RoutedEventArgs e) {
+            var dlg = new CommonOpenFileDialog();
+            dlg.Title = Properties.Lang.FDOutputDir;
+            dlg.IsFolderPicker = true;
+            dlg.InitialDirectory = PathOutput.Text;
 
+            dlg.AddToMostRecentlyUsedList = true;
+            dlg.AllowNonFileSystemItems = false;
+            dlg.DefaultDirectory = PathOutput.Text;
+            dlg.EnsureFileExists = true;
+            dlg.EnsurePathExists = true;
+            dlg.EnsureReadOnly = false;
+            dlg.EnsureValidNames = true;
+            dlg.Multiselect = false;
+            dlg.ShowPlacesList = true;
+
+            if (dlg.ShowDialog() == CommonFileDialogResult.Ok) {
+                var folder = dlg.FileName;
+                PathOutput.Text = folder;
+            }
         }
         /// <summary>
         /// 
@@ -120,12 +141,12 @@ namespace Stenography.Views {
             Functions.WriteLog(Logs, Properties.Lang.Start);
             informationForHide = Functions.AddExtension(informationForHide, System.IO.Path.GetExtension(PathFileForHide.Text));
             image = PictureFile.Hide(image, informationForHide);
-            image.Save(PathOutput.Text + '\\' + NameOutput.Text, System.Drawing.Imaging.ImageFormat.Png);
+            image.Save(PathOutput.Text + '\\' + NameOutput.Text + ".png", System.Drawing.Imaging.ImageFormat.Png);
             Functions.WriteLog(Logs, Properties.Lang.Finish);
         }
 
         private void OpenOutDir_Click(object sender, RoutedEventArgs e) {
-            string absolutePath = $"{PathOutput.Text}\\{NameOutput.Text}";
+            string absolutePath = $"{PathOutput.Text}\\{NameOutput.Text}.png";
             if (!File.Exists(absolutePath)) return;
             string args = string.Format("/Select, \"{0}\"", absolutePath);
             Process.Start(new ProcessStartInfo("explorer.exe", args));

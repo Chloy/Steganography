@@ -97,6 +97,15 @@ namespace Stenography.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose output directory.
+        /// </summary>
+        public static string FDOutputDir {
+            get {
+                return ResourceManager.GetString("FDOutputDir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose secret file.
         /// </summary>
         public static string FDSecret {
@@ -138,6 +147,15 @@ namespace Stenography.Properties {
         public static string HideButton {
             get {
                 return ResourceManager.GetString("HideButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hiden.
+        /// </summary>
+        public static string Hiden {
+            get {
+                return ResourceManager.GetString("Hiden", resourceCulture);
             }
         }
         
@@ -309,6 +327,15 @@ namespace Stenography.Properties {
         public static string UnhideLabel {
             get {
                 return ResourceManager.GetString("UnhideLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unhiden.
+        /// </summary>
+        public static string Unhiden {
+            get {
+                return ResourceManager.GetString("Unhiden", resourceCulture);
             }
         }
     }

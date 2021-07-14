@@ -83,7 +83,7 @@
         <Button x:Name="ChooseOutputPath"   Content="..." Width="30" 
                 Margin="536,110,0,0" Click="ChooseOutputPath_Click" />
         <TextBox x:Name="NameOutput"   Margin="30,140,0,0" 
-                 Text="" Width="245" IsReadOnly="True" BorderThickness="2"/>
+                 Text="" Width="245" BorderThickness="2"/>
         <TextBlock IsHitTestVisible="False" 
                    Text="{x:Static language:Lang.OutputName}" 
                    Margin="35 143 0 0"

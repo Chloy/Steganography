@@ -129,6 +129,9 @@
   <data name="FDContainer" xml:space="preserve">
     <value>Выберите файл-контейнер, который будет хранить секретный файл</value>
   </data>
+  <data name="FDOutputDir" xml:space="preserve">
+    <value>Выберите конечную директорию</value>
+  </data>
   <data name="FDSecret" xml:space="preserve">
     <value>Выберите секретный файл</value>
   </data>
@@ -143,6 +146,9 @@
   </data>
   <data name="HideButton" xml:space="preserve">
     <value>Скрыть</value>
+  </data>
+  <data name="Hiden" xml:space="preserve">
+    <value>Скрытый</value>
   </data>
   <data name="LanguageLabel" xml:space="preserve">
     <value>Язык</value>
@@ -200,5 +206,8 @@
   </data>
   <data name="UnhideLabel" xml:space="preserve">
     <value>Расскрыть</value>
+  </data>
+  <data name="Unhiden" xml:space="preserve">
+    <value>Расскрытый</value>
   </data>
 </root>

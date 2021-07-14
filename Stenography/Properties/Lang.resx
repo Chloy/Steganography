@@ -129,6 +129,9 @@
   <data name="FDContainer" xml:space="preserve">
     <value>Choose file-container, which will contain secret file</value>
   </data>
+  <data name="FDOutputDir" xml:space="preserve">
+    <value>Choose output directory</value>
+  </data>
   <data name="FDSecret" xml:space="preserve">
     <value>Choose secret file</value>
   </data>
@@ -143,6 +146,9 @@
   </data>
   <data name="HideButton" xml:space="preserve">
     <value>Hide</value>
+  </data>
+  <data name="Hiden" xml:space="preserve">
+    <value>Hiden</value>
   </data>
   <data name="LanguageLabel" xml:space="preserve">
     <value>Language</value>
@@ -200,5 +206,8 @@
   </data>
   <data name="UnhideLabel" xml:space="preserve">
     <value>Unhide</value>
+  </data>
+  <data name="Unhiden" xml:space="preserve">
+    <value>Unhiden</value>
   </data>
 </root>
