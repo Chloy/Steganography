@@ -29,7 +29,6 @@
         <Style TargetType="Border">
             <Setter Property="CornerRadius" Value="3"/>
         </Style>
-
         <Style TargetType="Button">
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
@@ -80,14 +79,13 @@
                 <Setter Property="FontSize" Value="15"/>
                 <Setter Property="BorderThickness" Value="1"/>
                 <Setter Property="Height" Value="22"/>
-                <Setter Property="Width" Value="70"/>
+                <Setter Property="Width" Value="80"/>
                 <Setter Property="HorizontalAlignment" Value="Left"/>
                 <Setter Property="VerticalAlignment" Value="Top"/>
                 <Setter Property="Cursor" Value="Hand"/>
-                
+
             </Style.Setters>
         </Style>
-
         <Style TargetType="TextBox">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=ColorMode}" Value="Black">
@@ -98,13 +96,13 @@
                 <Setter Property="FontFamily" Value="Bahnschrift Light"/>
                 <Setter Property="FontSize" Value="15"/>
                 <Setter Property="BorderThickness" Value="2"/>
+                <Setter Property="BorderBrush" Value="Black"/>
                 <Setter Property="HorizontalAlignment" Value="Left"/>
                 <Setter Property="VerticalAlignment" Value="Top"/>
                 <Setter Property="Height" Value="22"/>
                 <Setter Property="TextWrapping" Value="NoWrap"/>
             </Style.Setters>
         </Style>
-
         <ControlTemplate x:Key="passwordbox" TargetType="PasswordBox">
             <Border Background="{TemplateBinding Background}" 
         x:Name="Bd" BorderBrush="#FFE6DDDD"
@@ -112,12 +110,11 @@
                 <ScrollViewer Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
             </Border>
         </ControlTemplate>
-
         <Style TargetType="PasswordBox">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=ColorMode}" Value="Black">
                     <Setter Property="BorderBrush" Value="DarkGray"/>
-                </DataTrigger>  
+                </DataTrigger>
             </Style.Triggers>
             <Style.Setters>
                 <Setter Property="FontFamily" Value="Bahnschrift Light"/>
@@ -126,6 +123,5 @@
                 <Setter Property="Height" Value="22"/>
             </Style.Setters>
         </Style>
-
     </Application.Resources>
 </Application>

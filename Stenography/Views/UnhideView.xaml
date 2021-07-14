@@ -4,22 +4,88 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Stenography.Views"
+             xmlns:language="clr-namespace:Stenography.Properties"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
     <Grid>
-        <Label Content="Unhide Mode" FontFamily="Bahnschrift Light" FontSize="27" Foreground="White" Margin="30, 0, 0, 0"/>
+        <Label Content="{x:Static language:Lang.UnhideLabel}" FontFamily="Bahnschrift Light" FontSize="27" Foreground="White" Margin="30, 0, 0, 0"/>
         <TextBox x:Name="Input" Width="490" 
                  Margin="30,50,0,0" IsReadOnly="True"/>
+        <TextBlock IsHitTestVisible="False" 
+                   Text="{x:Static language:Lang.FileContainerPath}" 
+                   Margin="35 53 0 0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Foreground="DarkGray"
+                   FontFamily="Bahnschrift Light"
+                   FontSize="15">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, 
+                            ElementName=Input}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
         <TextBox x:Name="OutputPath" Width="490" 
                  Margin="30,80,0,0" IsReadOnly="True"/>
+        <TextBlock IsHitTestVisible="False" 
+                   Text="{x:Static language:Lang.OutputPath}" 
+                   Margin="35 83 0 0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Foreground="DarkGray"
+                   FontFamily="Bahnschrift Light"
+                   FontSize="15">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, 
+                            ElementName=OutputPath}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
         <TextBox x:Name="OutputName" Width="245" 
                  Margin="30,110,0,0" IsReadOnly="False"/>
+        <TextBlock IsHitTestVisible="False" 
+                   Text="{x:Static language:Lang.OutputName}" 
+                   Margin="35 113 0 0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Foreground="DarkGray"
+                   FontFamily="Bahnschrift Light"
+                   FontSize="15">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, 
+                            ElementName=OutputName}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
         <Button x:Name="InputButton" Content="..." Click="InputButton_Click"
                 Margin="530,50,0,0" Width="30"/>
         <Button x:Name="OutputButton" Content="..." Click="OutputButton_Click"
                 Margin="530,80,0,0" Width="30"/>
-        <Button x:Name="Unhide" Content="Unhide" Click="Unhide_Click"
-                Margin="30,150,0,0"/>
+        <Button x:Name="Unhide" Content="{x:Static language:Lang.UnhideButton}" Click="Unhide_Click"
+                Margin="30,150,0,0" Width="80" Height="30"/>
+        <Button x:Name="OpenOutDir" 
+                Margin="290 110 0 0" 
+                Content="{x:Static language:Lang.OpenOutDir}"
+                Height="25" Width="70"
+                Click="OpenOutDir_Click"/>
 
     </Grid>
 </UserControl>

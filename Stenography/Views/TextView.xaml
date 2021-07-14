@@ -5,40 +5,128 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:properties="clr-namespace:Stenography.Properties"
              xmlns:local="clr-namespace:Stenography.Views"
+             xmlns:language="clr-namespace:Stenography.Properties"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="800" >
+             d:DesignHeight="400" d:DesignWidth="800" >
     <Grid>
-        <Label Content="Text Mode" FontFamily="Bahnschrift Light" FontSize="27" Foreground="White" Margin="30, 0, 0, 0"/>
-        <TextBox x:Name="PathContainer"   
-                 Margin="30,50,0,0" Text="" Width="490" IsReadOnly="true"/>
+        <Label Content="{x:Static language:Lang.TextLabel}" FontFamily="Bahnschrift Light" FontSize="27" Foreground="White" Margin="30, 0, 0, 0"/>
+        <TextBox x:Name="PathContainer" Text=""
+                 Margin="30,50,0,0" 
+                 Width="490" 
+                 IsReadOnly="True"/>
+        <TextBlock IsHitTestVisible="False" 
+                   Text="{x:Static language:Lang.FileContainerPath}"  
+                   Margin="35 53 0 0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Foreground="DarkGray"
+                   FontFamily="Bahnschrift Light"
+                   FontSize="15">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, 
+                            ElementName=PathContainer}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
         <Button x:Name="ChooseFileContainer"   Content="..." Width="30"
                 Margin="536,50,0,0" Click="ChooseFileContainer_Click" />
         <TextBox x:Name="PathFileForHide"  
                  Margin="30,80,0,0" Text="" Width="490" IsReadOnly="true"/>
+        <TextBlock IsHitTestVisible="False" 
+                   Text="{x:Static language:Lang.SecretFile}" 
+                   Margin="35 83 0 0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Foreground="DarkGray"
+                   FontFamily="Bahnschrift Light"
+                   FontSize="15">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, 
+                            ElementName=PathFileForHide}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
         <Button x:Name="ChooseFileForHide"   Content="..." Width="30" 
                 Margin="536,80,0,0" Click="ChooseFileForHide_Click" />
         <TextBox x:Name="PathOutput"   Margin="30,110,0,0" 
                  Text="" Width="490" IsReadOnly="True" BorderThickness="2"/>
+        <TextBlock IsHitTestVisible="False" 
+                   Text="{x:Static language:Lang.OutputPath}" 
+                   Margin="35 113 0 0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Foreground="DarkGray"
+                   FontFamily="Bahnschrift Light"
+                   FontSize="15">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, 
+                            ElementName=PathOutput}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
         <Button x:Name="ChooseOutputPath"   Content="..." Width="30" 
                 Margin="536,110,0,0" Click="ChooseOutputPath_Click" />
         <TextBox x:Name="NameOutput"   Margin="30,140,0,0" 
-                 Text="" Width="245" IsReadOnly="True" BorderThickness="2"/>
+                 Text="" Width="245" IsReadOnly="False" BorderThickness="2"/>
+        <TextBlock IsHitTestVisible="False" 
+                   Text="{x:Static language:Lang.OutputName}" 
+                   Margin="35 143 0 0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Foreground="DarkGray"
+                   FontFamily="Bahnschrift Light"
+                   FontSize="15">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, 
+                            ElementName=NameOutput}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <Button x:Name="OpenOutDir" 
+                Margin="290 140 0 0" 
+                Content="{x:Static language:Lang.OpenOutDir}"
+                Height="25" Width="70"
+                Click="OpenOutDir_Click"/>
         <TextBox x:Name="MaxSizeForHideIs" Text="" Margin="30,170,0,0"  
-                 Width="230" IsReadOnly="true" />
+                 Width="230" IsReadOnly="true" Visibility="Hidden" />
         <Button x:Name="NeedEncrypt" Content="Encryption"   HorizontalAlignment="Left" 
                      Margin="30,200,0,0" VerticalAlignment="Top" Click="NeedEncrypt_Click"
-                BorderBrush="Gray" BorderThickness="2,2,2,2" Width="100" Height="25">
+                BorderBrush="Gray" BorderThickness="2,2,2,2" Width="100" Height="25" Visibility="Hidden">
         </Button>
         <PasswordBox   HorizontalAlignment="Left" Margin="30,230,0,0" 
                      VerticalAlignment="Top" x:Name="Password" Width="490" IsEnabled="False"
-                        Template="{StaticResource passwordbox}"/>
+                        Template="{StaticResource passwordbox}" Visibility="Hidden"/>
         <PasswordBox   HorizontalAlignment="Left" Margin="30,260,0,0" 
             VerticalAlignment="Top" x:Name="PasswordVerify" Width="490" IsEnabled="False"
-                        Template="{StaticResource passwordbox}"/>
+                        Template="{StaticResource passwordbox}" Visibility="Hidden"/>
         <Button x:Name="DoubleBottom" Content="Double Bottom" HorizontalAlignment="Left" 
                 VerticalAlignment="Top"   Margin="30,290,0,0" Width="130"
                 BorderBrush="Gray" BorderThickness="2, 2, 2, 2" IsEnabled="False" 
-                Click="DoubleBottom_Click">
+                Click="DoubleBottom_Click" Visibility="Hidden">
             <Button.Style>
                 <Style TargetType="Button">
                     <Style.Triggers>
@@ -107,22 +195,26 @@
         </Button>
         <PasswordBox   HorizontalAlignment="Left" Margin="30,320,0,0" 
                      VerticalAlignment="Top" x:Name="PassDoubleBottom" Width="490" 
-                     IsEnabled="False" Template="{StaticResource passwordbox}"/>
+                     IsEnabled="False" Template="{StaticResource passwordbox}" Visibility="Hidden"/>
         <PasswordBox   HorizontalAlignment="Left" Margin="30,320,0,0" 
             VerticalAlignment="Top" x:Name="PassDoubleBottomVerify" Width="490" 
-                     IsEnabled="False" Template="{StaticResource passwordbox}"/>
+                     IsEnabled="False" Template="{StaticResource passwordbox}" Visibility="Hidden"/>
         <TextBox x:Name="DoubleBottomPath"   IsReadOnlyCaretVisible="True" 
                  Width="490" Margin="30,350,0,0" 
-                 IsEnabled="False"/>
+                 IsEnabled="False" Visibility="Hidden"/>
         <Button x:Name="DoubleBottomChoose" Content="..." Width="30" Margin="536,350,0,0" 
                   Click="DoubleBottomChoose_Click" 
-                IsEnabled="False"/>
-        <Button x:Name="Hide" Content="Hide" Click="Hide_Click"   
-                Margin="30,380,0,0" Width="70" Height="30" FontSize="20"/>
-
-        <ScrollViewer x:Name="ScrollLog" VerticalScrollBarVisibility="Auto"   Margin="120,380,10,10"
+                IsEnabled="False" Visibility="Hidden"/>
+        <Button x:Name="Hide" 
+                Content="{x:Static language:Lang.HideButton}" 
+                Click="Hide_Click"   
+                Margin="30,180,0,0" 
+                Width="70" Height="30" 
+                FontSize="20"/>
+        <ScrollViewer x:Name="ScrollLog" VerticalScrollBarVisibility="Auto"   Margin="120,180,10, 10"
                       BorderThickness="2" BorderBrush="DarkGray">
-            <TextBox x:Name="Logs" TextWrapping="Wrap" Height="Auto" Width="640" BorderThickness="0" Background="{x:Null}" Foreground="White"/>
+            <TextBox x:Name="Logs" TextWrapping="Wrap" Height="Auto" Width="Auto"
+                     BorderThickness="0" Background="{x:Null}" Foreground="White"/>
         </ScrollViewer>
     </Grid>
 </UserControl>

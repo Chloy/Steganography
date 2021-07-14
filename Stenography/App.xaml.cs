@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows;
 
 namespace Stenography {
@@ -12,9 +12,11 @@ namespace Stenography {
     /// </summary>
     public partial class App : Application
     {
-        private void EventTrigger_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
-        {
+        protected override void OnStartup(StartupEventArgs e) {
+            var langCode = Stenography.Properties.Settings.Default.language;
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(langCode);
 
+            base.OnStartup(e);
         }
     }
 }

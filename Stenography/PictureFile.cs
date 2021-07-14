@@ -7,6 +7,12 @@ using System.Drawing;
 
 namespace Stenography {
     class PictureFile {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="infoToHide"></param>
+        /// <returns></returns>
         public static Bitmap Hide(Bitmap image, byte[] infoToHide) {
             byte[] rgb = new byte[3];
             int byteIndex = 0;
@@ -49,7 +55,11 @@ namespace Stenography {
             }
             return image;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="image"></param>
+        /// <returns></returns>
         public static byte[] Unhide(Bitmap image) {
             byte[] result = new byte[image.Width * image.Height * 3 / 8];
             int byteIndex = 0;

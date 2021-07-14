@@ -1,20 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.IO;
 using Microsoft.Win32;
 using System.Drawing;
+using System.Diagnostics;
 
 namespace Stenography.Views {
     /// <summary>
@@ -26,6 +15,8 @@ namespace Stenography.Views {
         }
         private void InputButton_Click(object sender, RoutedEventArgs e) {
             OpenFileDialog openFile = new OpenFileDialog();
+            openFile.Title = Properties.Lang.FDUnhideContainer;
+            openFile.Filter = "Text or picture (*.txt; *.png)|*.txt; *.png";
             if (openFile.ShowDialog() == true) {
                 Input.Text = openFile.FileName;
                 int index = openFile.FileName.LastIndexOf('\\');
@@ -39,6 +30,7 @@ namespace Stenography.Views {
         }
 
         private void Unhide_Click(object sender, RoutedEventArgs e) {
+            string ext;
             switch (System.IO.Path.GetExtension(Input.Text)) {
                 case ".txt":
                     string sourseStream;
@@ -47,18 +39,27 @@ namespace Stenography.Views {
                     }
 
                     byte[] information = TextFile.Unhide(sourseStream, Functions.CharacterCount(sourseStream, TextFile.equalSymbols_RU_EN));
-                    using (FileStream file = new FileStream(OutputPath.Text + '\\' + OutputName.Text, FileMode.Create)) {
+                    ext = Functions.ExtractExtension(ref information);
+                    using (FileStream file = new FileStream(OutputPath.Text + '\\' + "ExtreactedFile" + ext, FileMode.Create)) {
                         file.Write(information, 0, information.Length);
                     }
                     break;
                 case ".png":
                     Bitmap image = new Bitmap(Input.Text);
                     byte[] result = PictureFile.Unhide(image);
-                    using (FileStream file = new FileStream(OutputPath.Text + '\\' + OutputName.Text, FileMode.Create)) {
+                    ext = Functions.ExtractExtension(ref result);
+                    using (FileStream file = new FileStream(OutputPath.Text + '\\' + "ExtractedFile" + ext, FileMode.Create)) {
                         file.Write(result, 0, result.Length);
                     }
                     break;
             }
+        }
+
+        private void OpenOutDir_Click(object sender, RoutedEventArgs e) {
+            string absolutePath = $"{OutputPath.Text}\\{OutputName.Text}";
+            if (!File.Exists(absolutePath)) return;
+            string args = string.Format("/Select, \"{0}\"", absolutePath);
+            Process.Start(new ProcessStartInfo("explorer.exe", args));
         }
     }
 }

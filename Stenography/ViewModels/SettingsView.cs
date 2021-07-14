@@ -5,6 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Stenography.ViewModels {
-    public  class TextViewModel {
+    public class SettingsView {
     }
 }

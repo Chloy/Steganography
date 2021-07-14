@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace Stenography {
     class TextFile {
+        
         public TextFile() {
 
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public static Dictionary<char, char> equalSymbols_RU_EN = new Dictionary<char, char> {//RU_EN
             {'\u0430', '\u0061'},//a
             {'\u0410', '\u0041'},//A
@@ -28,7 +32,9 @@ namespace Stenography {
             {'\u0425', '\u0058'},//X
             {'\u0445', '\u0078'}//x
         };
-
+        /// <summary>
+        /// 
+        /// </summary>
         public static Dictionary<char, char> equalSymbols_EN_RU = new Dictionary<char, char> {//EN_RU
             {'\u0061', '\u0430'},//a
             {'\u0041', '\u0410'},//A
@@ -48,7 +54,12 @@ namespace Stenography {
             {'\u0058', '\u0425'},//X
             {'\u0078', '\u0445'}//x
         };
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sourseStream"></param>
+        /// <param name="informationForHide"></param>
+        /// <returns></returns>
         public static string Hide(string sourseStream, byte[] informationForHide) {
             int index = Functions.IndexOfAnySymbol(sourseStream, equalSymbols_RU_EN);
             char[] text = sourseStream.ToCharArray();
@@ -80,6 +91,12 @@ namespace Stenography {
             return sourseStream;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sourseStream"></param>
+        /// <param name="characterCount"></param>
+        /// <returns></returns>
         public static byte[] Unhide(string sourseStream, int characterCount) {
             byte[] hideninformation = new byte[characterCount / 8];
             int index = Functions.IndexOfAnySymbol(sourseStream, equalSymbols_RU_EN);

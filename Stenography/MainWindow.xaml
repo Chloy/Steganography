@@ -6,17 +6,22 @@
         xmlns:local="clr-namespace:Stenography"
         xmlns:views="clr-namespace:Stenography.Views"
         xmlns:viewmodels="clr-namespace:Stenography.ViewModels"
+        xmlns:language="clr-namespace:Stenography.Properties"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="900" 
+        Title="MainWindow" Height="400" Width="700" 
         WindowStyle="None"
         ResizeMode="NoResize"
-        x:Name="WindowMain">
+        x:Name="WindowMain"
+        Loaded="WindowMain_Loaded">
     <Window.Resources>
         <DataTemplate x:Name="TextViewTemplate" DataType="{x:Type viewmodels:TextViewModel}">
             <views:TextView/>
         </DataTemplate>
         <DataTemplate x:Name="PictureViewTemplate" DataType="{x:Type viewmodels:PictureViewModel}">
             <views:PictueView/>
+        </DataTemplate>
+        <DataTemplate x:Name="SettingsViewTemplate" DataType="{x:Type viewmodels:SettingsView}">
+            <views:VideoView/>
         </DataTemplate>
         <DataTemplate x:Name="UnhideViewTemplate" DataType="{x:Type viewmodels:UnhideViewModel}">
             <views:UnhideView/>
@@ -30,7 +35,7 @@
     </Window.Background>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1.05*"/>
             <ColumnDefinition Width="0.05*"/>
             <ColumnDefinition Width="6*"/>
         </Grid.ColumnDefinitions>
@@ -41,17 +46,23 @@
         <GridSplitter Grid.Column="1" Grid.Row="2" Width="7" IsEnabled="False"/>
         <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" MouseDown="DockPanel_MouseDown">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-                <Button x:Name="RollUpWindow" Width="30" Height="25" Margin="0, 0, 5, 0" Click="RollUpWindow_Click"
-                        Content="_" FontSize="20"/>
-                <Button x:Name="CloseWindow" Width="30" Height="25" Margin="0, 0, 5, 0" Click="CloseWindow_Click"
+                <Button x:Name="RollUpWindow" Width="30" Height="20" Margin="0, 2, 5, 0" Click="RollUpWindow_Click"
+                        Content="-" FontSize="20"/>
+                <Button x:Name="CloseWindow" Width="30" Height="20" Margin="0, 2, 5, 0" Click="CloseWindow_Click"
                         Content="X" FontSize="15"/>
             </StackPanel>
         </DockPanel>
         <DockPanel Grid.Column="0" Grid.Row="1" Background="{x:Null}">
             <StackPanel Orientation="Vertical">
-                <Button x:Name="textView" Content="Text" Click="textView_Click" Foreground="White" Margin="30, 10, 0, 0"/>
-                <Button x:Name="pictureView" Content="Picture" Click="pictureView_Click" Foreground="White" Margin="30, 10, 0, 0"/>
-                <Button x:Name="unhideView" Content="Unhide" Click="unhideView_Click" Foreground="White" Margin="30, 10, 0, 0"/>
+                <Button x:Name="textView" Content="{x:Static language:Lang.TextButton}"  Click="textView_Click" 
+                        HorizontalAlignment="Center" Foreground="White" Margin="0, 10, 0, 0"/>
+                <Button x:Name="pictureView" Content="{x:Static language:Lang.PictureButton}" Click="pictureView_Click" 
+                        HorizontalAlignment="Center" Foreground="White" Margin="0, 10, 0, 0"/>
+                <Button x:Name="unhideView" Content="{x:Static language:Lang.UnhideButton}" Click="unhideView_Click" 
+                        HorizontalAlignment="Center" Foreground="White" Margin="0, 10, 0, 0"/>
+                <Button x:Name="Settings" HorizontalAlignment="Center" Margin="0 220 0 0"
+                        Content="{x:Static language:Lang.SettingsButton}" Foreground="white" 
+                        Click="Settings_Click"/>
             </StackPanel>
         </DockPanel>
         <ContentControl Grid.Column="3" Grid.Row="2" Content="{Binding}"/>

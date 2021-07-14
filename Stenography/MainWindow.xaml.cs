@@ -49,5 +49,17 @@ namespace Stenography {
         {
             this.WindowState = WindowState.Minimized;
         }
+
+        private void videoView_Click(object sender, RoutedEventArgs e) {
+            DataContext = new ViewModels.SettingsView();
+        }
+
+        private void Settings_Click(object sender, RoutedEventArgs e) {
+            DataContext = new ViewModels.SettingsView();
+        }
+
+        private void WindowMain_Loaded(object sender, RoutedEventArgs e) {
+            DataContext = new ViewModels.SettingsView();
+        }
     }
 }

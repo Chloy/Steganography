@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Win32;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.IO;
-using Microsoft.Win32;
 
 namespace Stenography.Views {
     /// <summary>
@@ -25,6 +16,7 @@ namespace Stenography.Views {
         private byte[] informationForHide;
         public TextView() {
             InitializeComponent();
+
         }
 
         private void NeedEncrypt_Click(object sender, RoutedEventArgs e) {
@@ -70,6 +62,8 @@ namespace Stenography.Views {
 
         private void ChooseFileContainer_Click(object sender, RoutedEventArgs e) {
             OpenFileDialog openFile = new OpenFileDialog();
+            openFile.Title = Properties.Lang.FDContainer;
+            openFile.Filter = "Text file (*.txt)|*.txt";
             if (openFile.ShowDialog() == true) {
                 PathContainer.Text = openFile.FileName;
                 int index = openFile.FileName.LastIndexOf('\\');
@@ -79,16 +73,24 @@ namespace Stenography.Views {
                     sourseStream = reader.ReadToEnd();
                 }
                 Logs.Text += Functions.CountAbleSizeToHide(sourseStream, TextFile.equalSymbols_RU_EN, out numberOfBytes) + '\n';
+                if (informationForHide != null && informationForHide.Length > numberOfBytes) {
+                    Functions.WriteLog(Logs, Properties.Lang.SecretFileTooBig);
+                }
             }
         }
 
         private void ChooseFileForHide_Click(object sender, RoutedEventArgs e) {
             OpenFileDialog openFile = new OpenFileDialog();
+            openFile.Title = Properties.Lang.FDSecret;
+            openFile.Filter = "Any file (*.*)|*.*";
             if (openFile.ShowDialog() == true) {
                 PathFileForHide.Text = openFile.FileName;
                 using (FileStream file = new FileStream(PathFileForHide.Text, FileMode.Open)) {
                     informationForHide = new byte[file.Length];
                     file.Read(informationForHide, 0, (int)file.Length);
+                }
+                if (sourseStream != null && informationForHide.Length > numberOfBytes) {
+                    Functions.WriteLog(Logs, Properties.Lang.SecretFileTooBig);
                 }
             }
         }
@@ -100,11 +102,11 @@ namespace Stenography.Views {
         private bool CheckArguments() {
             bool result = true;
             if (PathContainer.Text == "") {
-                Logs.Text += Functions.WriteLog(Functions.errorsKind[1]);
+                Functions.WriteLog(Logs, Functions.errorsKind[1]);
                 result = false;
             }
-            if (PathOutput.Text == "") {
-                Logs.Text += Functions.WriteLog(Functions.errorsKind[2]);
+            if (PathFileForHide.Text == "") {
+                Functions.WriteLog(Logs, Functions.errorsKind[2]);
                 result = false;
             }
             if (informationForHide != null && informationForHide.Length > numberOfBytes) result = false;
@@ -114,12 +116,22 @@ namespace Stenography.Views {
 
         private void Hide_Click(object sender, RoutedEventArgs e) {
             if (!CheckArguments()) return;
+            Functions.WriteLog(Logs, Properties.Lang.Start);
+            informationForHide = Functions.AddExtension(informationForHide, System.IO.Path.GetExtension(PathFileForHide.Text));
             string res = TextFile.Hide(sourseStream, informationForHide);
             using (StreamWriter writer = new StreamWriter(PathOutput.Text + '\\' + NameOutput.Text, false)) {
                 for (int i = 0; i < res.Length; i++) {
                     writer.Write(res[i]);
                 }
             }
+            Functions.WriteLog(Logs, Properties.Lang.Finish);
+        }
+
+        private void OpenOutDir_Click(object sender, RoutedEventArgs e) {
+            string absolutePath = $"{PathOutput.Text}\\{NameOutput.Text}";
+            if (!File.Exists(absolutePath)) return;
+            string args = string.Format("/Select, \"{0}\"", absolutePath);
+            Process.Start(new ProcessStartInfo("explorer.exe", args));
         }
     }
 }
