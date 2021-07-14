@@ -3,10 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa5="http://schemas.fontawesome.com/icons/"
         xmlns:local="clr-namespace:Stenography"
         xmlns:views="clr-namespace:Stenography.Views"
         xmlns:viewmodels="clr-namespace:Stenography.ViewModels"
         xmlns:language="clr-namespace:Stenography.Properties"
+        xmlns:properties="clr-namespace:Stenography.Properties"
         mc:Ignorable="d"
         Title="MainWindow" Height="400" Width="700" 
         WindowStyle="None"
@@ -47,9 +49,95 @@
         <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" MouseDown="DockPanel_MouseDown">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <Button x:Name="RollUpWindow" Width="30" Height="20" Margin="0, 2, 5, 0" Click="RollUpWindow_Click"
-                        Content="-" FontSize="20"/>
+                        FontSize="20">
+                    <Button.Content>
+                        <fa5:ImageAwesome 
+                            Icon="Solid_WindowMinimize"
+                            Foreground="White"
+                            Height="4"
+                            Margin="0 10 0 0">
+                            <fa5:ImageAwesome.Style>
+                                <Style TargetType="fa5:ImageAwesome">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="Black"/>
+                                        </Trigger>
+                                        <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=ColorMode}" Value="Black">
+                                            <Setter Property="Foreground" Value="White"/>
+                                        </DataTrigger>
+                                        <EventTrigger RoutedEvent="MouseEnter">
+                                            <EventTrigger.Actions>
+                                                <BeginStoryboard>
+                                                    <Storyboard Storyboard.TargetProperty="Foreground.Color">
+                                                        <ColorAnimation From="White"
+                                                To="Black"
+                                                Duration="0:0:0.1"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger.Actions>
+                                        </EventTrigger>
+                                        <EventTrigger RoutedEvent="MouseLeave">
+                                            <EventTrigger.Actions>
+                                                <BeginStoryboard>
+                                                    <Storyboard Storyboard.TargetProperty="Foreground.Color">
+                                                        <ColorAnimation From="Black"
+                                                To="White"
+                                                Duration="0:0:0.1"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger.Actions>
+                                        </EventTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </fa5:ImageAwesome.Style>
+                        </fa5:ImageAwesome>
+                    </Button.Content>
+                </Button>
                 <Button x:Name="CloseWindow" Width="30" Height="20" Margin="0, 2, 5, 0" Click="CloseWindow_Click"
-                        Content="X" FontSize="15"/>
+                        FontSize="15">
+                    <Button.Content>
+                        <fa5:ImageAwesome 
+                            Icon="Solid_Times"
+                            Foreground="White"
+                            Height="13">
+                            <fa5:ImageAwesome.Style>
+                                <Style TargetType="fa5:ImageAwesome">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="Black"/>
+                                        </Trigger>
+                                        <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=ColorMode}" Value="Black">
+                                            <Setter Property="Foreground" Value="White"/>
+                                        </DataTrigger>
+                                        <EventTrigger RoutedEvent="MouseEnter">
+                                            <EventTrigger.Actions>
+                                                <BeginStoryboard>
+                                                    <Storyboard Storyboard.TargetProperty="Foreground.Color">
+                                                        <ColorAnimation From="White"
+                                                To="Black"
+                                                Duration="0:0:0.1"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger.Actions>
+                                        </EventTrigger>
+                                        <EventTrigger RoutedEvent="MouseLeave">
+                                            <EventTrigger.Actions>
+                                                <BeginStoryboard>
+                                                    <Storyboard Storyboard.TargetProperty="Foreground.Color">
+                                                        <ColorAnimation From="Black"
+                                                To="White"
+                                                Duration="0:0:0.1"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger.Actions>
+                                        </EventTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </fa5:ImageAwesome.Style>
+
+                        </fa5:ImageAwesome>
+                    </Button.Content>
+                </Button>
             </StackPanel>
         </DockPanel>
         <DockPanel Grid.Column="0" Grid.Row="1" Background="{x:Null}">

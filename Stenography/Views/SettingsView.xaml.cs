@@ -13,7 +13,6 @@ namespace Stenography.Views {
     /// Interaction logic for VideoView.xaml
     /// </summary>
     public partial class VideoView : UserControl {
-        byte[] informationForHide;
         public VideoView() {
             InitializeComponent();
         }

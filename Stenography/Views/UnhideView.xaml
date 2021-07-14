@@ -3,13 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:fa5="http://schemas.fontawesome.com/icons/"
              xmlns:local="clr-namespace:Stenography.Views"
              xmlns:language="clr-namespace:Stenography.Properties"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
     <Grid>
-        <Label Content="{x:Static language:Lang.UnhideLabel}" FontFamily="Bahnschrift Light" FontSize="27" Foreground="White" Margin="30, 0, 0, 0"/>
-        <TextBox x:Name="Input" Width="490" 
+        <StackPanel 
+            Orientation="Horizontal"
+            Margin="30 0 0 0">
+            <Label 
+                Content="{x:Static language:Lang.UnhideLabel}" 
+                FontFamily="Bahnschrift Light" 
+                FontSize="27" 
+                Foreground="White"
+                Margin="0 5 0 0"/>
+            <fa5:ImageAwesome 
+                Icon="Solid_RedoAlt"
+                Height="20" Width="Auto"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Foreground="White"
+                Margin="5 15 0 0"/>
+        </StackPanel><TextBox x:Name="Input" Width="490" 
                  Margin="30,50,0,0" IsReadOnly="True"/>
         <TextBlock IsHitTestVisible="False" 
                    Text="{x:Static language:Lang.FileContainerPath}" 
