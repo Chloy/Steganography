@@ -70,6 +70,24 @@ namespace Stenography.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string About {
+            get {
+                return ResourceManager.GetString("About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string AboutText {
+            get {
+                return ResourceManager.GetString("AboutText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File-container&apos;s path is wrong..
         /// </summary>
         public static string ContainerPathWrong {
@@ -282,6 +300,15 @@ namespace Stenography.Properties {
         public static string SettingsLabel {
             get {
                 return ResourceManager.GetString("SettingsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sourse code:.
+        /// </summary>
+        public static string SourseCode {
+            get {
+                return ResourceManager.GetString("SourseCode", resourceCulture);
             }
         }
         

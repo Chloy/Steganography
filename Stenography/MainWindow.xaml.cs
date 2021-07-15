@@ -61,5 +61,9 @@ namespace Stenography {
         private void WindowMain_Loaded(object sender, RoutedEventArgs e) {
             DataContext = new ViewModels.SettingsView();
         }
+
+        private void About_Click(object sender, RoutedEventArgs e) {
+            DataContext = new ViewModels.About();
+        }
     }
 }

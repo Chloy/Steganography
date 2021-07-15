@@ -120,6 +120,12 @@
   <data name="AbleSizeForHide" xml:space="preserve">
     <value>Доступный размер для скрытия</value>
   </data>
+  <data name="About" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="AboutText" xml:space="preserve">
+    <value>Много текста</value>
+  </data>
   <data name="ContainerPathWrong" xml:space="preserve">
     <value>Путь файла контейнера некорректен.</value>
   </data>
@@ -191,6 +197,9 @@
   </data>
   <data name="SettingsLabel" xml:space="preserve">
     <value>Настройки</value>
+  </data>
+  <data name="SourseCode" xml:space="preserve">
+    <value>Исходный код:</value>
   </data>
   <data name="Start" xml:space="preserve">
     <value>Старт</value>
