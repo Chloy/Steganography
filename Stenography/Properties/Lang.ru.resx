@@ -124,7 +124,7 @@
     <value>Описание</value>
   </data>
   <data name="AboutText" xml:space="preserve">
-    <value>Много текста</value>
+    <value>Программа может записать любой файл в другой файл с форматом txt или png. В другом файле должно быть достаточно места (много текста или большое разрешение).</value>
   </data>
   <data name="ContainerPathWrong" xml:space="preserve">
     <value>Путь файла контейнера некорректен.</value>

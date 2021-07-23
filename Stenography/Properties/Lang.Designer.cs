@@ -79,7 +79,7 @@ namespace Stenography.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Description.
+        ///   Looks up a localized string similar to The program can write any file in another file with txt or png format. Another file needs to have enough space (a lot of text or big resolution)..
         /// </summary>
         public static string AboutText {
             get {

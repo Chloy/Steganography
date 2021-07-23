@@ -24,10 +24,11 @@
         </StackPanel>
 
         <TextBlock Grid.Row="1" Text="{x:Static language:Lang.AboutText}"
-                   FontFamily="Bahnschrift Light" FontSize="20" Margin="20">
+                   FontFamily="Bahnschrift Light" FontSize="20" Margin="20"
+                   TextWrapping="Wrap">
             <LineBreak/><Run/><LineBreak/><Run Text="{x:Static language:Lang.SourseCode}"/>
-            <Hyperlink NavigateUri="https://github.com/Chloy" TextDecorations="None"
-                       RequestNavigate="Hyperlink_RequestNavigate">https://github.com/Chloy</Hyperlink>
+            <Hyperlink NavigateUri="https://github.com/Chloy/Steganography" TextDecorations="None"
+                       RequestNavigate="Hyperlink_RequestNavigate">https://github.com/Chloy/Steganography</Hyperlink>
         </TextBlock>
 
 

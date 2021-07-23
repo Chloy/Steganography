@@ -124,7 +124,7 @@
     <value>About</value>
   </data>
   <data name="AboutText" xml:space="preserve">
-    <value>Description</value>
+    <value>The program can write any file in another file with txt or png format. Another file needs to have enough space (a lot of text or big resolution).</value>
   </data>
   <data name="ContainerPathWrong" xml:space="preserve">
     <value>File-container's path is wrong.</value>
